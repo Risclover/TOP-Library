@@ -69,23 +69,27 @@ During the creation of this project, I used the following languages, frameworks,
 ## How to Use
 ([Back to Top](#top-library))
 
-Click on the "New Book" button to add a book to the library.
+1. Click on the "New Book" button to add a book to the library.
 
-(image of button)
+    (image of button)
 
-Clicking this button brings up a popup window. Fill in the book's title, author, number of pages, and whether or not you've already read this book.
+2. Clicking this button brings up a popup window. Fill in the book's title, author, number of pages, and whether or not you've already read this book.
 
-(image of popup window with things filled in)
+    (image of popup window with things filled in)
 
-When done, click Submit. Please note that attempting to leave a field blank yields an error.
+3. (**Optional**): You can select your card's background color via the dropdown menu at the bottom of the popup window. Do this for fun, to apply colors according to categories, etc. 
+
+(image of this)
+
+4. When done, click Submit. Please note that attempting to leave a field blank yields an error.
 
 (image of error)
 
-Once you click the Submit button, the popup window will close, and your book should now be displayed on the page in a card.
+5. Once you click the Submit button, the popup window will close, and your book should now be displayed on the page in a card.
 
 (image of card)
 
-You can edit whether or not you've read the book. You can also click the X in the upper right-hand corner to delete the book from your collection.
+6. You can edit whether or not you've read the book. You can also click the X in the upper right-hand corner to delete the book from your collection.
 
 (image of X circled in red, or of a red arrow pointing to it)
 
