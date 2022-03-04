@@ -95,9 +95,14 @@ function addBookToLibrary() {
       newCard.appendChild(newCardAuthor);
       newCard.appendChild(newCardPages);
       newCard.appendChild(newCardRead);
-      
+
     // Reset the color-picker dropdown back to default
     for (var i = 0, l = colorDropdown.length; i < l; i++) {
+        if(colorDropdown[i].value === 'dark') {
+            document.querySelector('.close').classList.add('cardback-dark');
+        } else {
+            document.querySelector('.close').classList.remove('cardback-dark');
+        }
         colorDropdown[i].selected = colorDropdown[i].defaultSelected;
     }
 
