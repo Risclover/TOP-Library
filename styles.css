@@ -126,36 +126,35 @@ option {
   font-size: .8rem;
 }
 
-#option-red {
+#option-red, .cardback-red {
   background-color: rgb(241, 191, 191);
-  color: black;
 }
 
-#option-orange {
+#option-orange, .cardback-orange {
   background-color: #ffcb9a;
 }
 
-#option-yellow {
+#option-yellow, .cardback-yellow {
   background-color: #fffda1;
 }
 
-#option-green {
+#option-green, .cardback-green {
   background-color: #9cd6af;
 }
 
-#option-blue {
+#option-blue, .cardback-blue {
   background-color: #a1d3f0;
 }
 
-#option-purple {
+#option-purple, .cardback-purple {
   background-color: #e6c1ff;
 }
 
-#option-grey {
+#option-grey, .cardback-grey {
   background-color: #cfcfcf;
 }
 
-#option-dark {
+#option-dark, .cardback-dark {
   background-color: #282f52;
   color: white;
 }

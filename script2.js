@@ -78,7 +78,7 @@ function addBookToLibrary() {
       newCardPages.setAttribute('class', 'pages-style');
       newCardRead.setAttribute('class', 'read-style');
       
-      newCard.classList.add('isVisible', 'cardbox');
+      newCard.classList.add('isVisible', 'cardbox', colorPicker());
       showBooks.appendChild(newCard);
       
       for(let i = 0; i < libraryBooks.length; i++) {
@@ -95,6 +95,7 @@ function addBookToLibrary() {
       newCard.appendChild(newCardRead);
    }
    updateLocalStorage();
+   colorPicker(newCard);
 }
 
 
@@ -137,4 +138,38 @@ cardClose.forEach(card => {
 
 function updateLocalStorage() {
     localStorage.setItem('books', JSON.stringify(libraryBooks));
+}
+
+function colorPicker(card) {
+    const colorDropdown = document.querySelector('select');
+
+    switch(colorDropdown.value) {
+        case 'red':
+            return 'cardback-red';
+            break;
+        case 'orange':
+            return 'cardback-orange';
+            break;
+        case 'yellow':
+            return 'cardback-yellow';
+            break;
+        case 'green':
+            return 'cardback-green';
+            break;
+        case 'blue':
+            return 'cardback-blue';
+            break;
+        case 'purple':
+            return 'cardback-purple';
+            break;
+        case 'dark':
+            return 'cardback-dark';
+            break;
+        case 'grey':
+            return 'cardback-grey';
+            break;
+        default:
+            return 'cardback-white';
+            break;
+    }
 }
