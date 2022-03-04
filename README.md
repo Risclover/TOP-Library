@@ -21,7 +21,7 @@ Badges to add in the future:
 - [Links](#links)
 
 ### Updates
-* **03/03/2022** - Rewrote the JavaScript code into jQuery. Please read my Project Breakdown for more information about this (why I did it as well as a comparison)
+* **03/03/2022** - Added option to select (from a preselected list) a card's background color. Not only does this bring a little fun and variety to the page, but it also allows the users to then color according to categories, etc.
 
 ## About Project 
 ([Back to Top](#top-library))
