@@ -44,17 +44,29 @@
       </header>
       <section class="modal-content">
           <form class="bookcard">
-              <label>Title of the book:</label>
-              <input type="text" class="form-box" id="book-title">
-              <label>Author of the book:</label>
-              <input type="text" class="form-box" id="book-author">
-              <label>How many pages?:</label>
-              <input type="number" class="form-box" id="book-pages">
-              <label>Have you read this?:</label>
-              <select id="book-read">
-                  <option name="select" disabled selected>Select one</option>
-                  <option name="yes">Yes</option>
-                  <option name="no">No</option>
+              <label>Title:</label>
+              <input type="text" class="form-box" id="book-title" placeholder="Fight Club">
+              <label>Author:</label>
+              <input type="text" class="form-box" id="book-author" placeholder="Chuck Palahniuk">
+              <label># of Pages:</label>
+              <input type="number" class="form-box" id="book-pages" placeholder="208">
+              <label>Have you read this book?:</label>
+              <div class="radiobox">
+                <label class="radio-option1"><input type="radio" name="read" value="yes" id="bookreadyes" class='form-radio' checked> Yes</label>
+                <label class="radio-option2"><input type="radio" name="read" value="no" id="bookreadno" class='form-radio'> No</label>
+              </div>
+              <label>Select card color (optional):</label>
+              <select class="colorpicker">
+                <option value='default' selected disabled>Please select one</option>
+                <option value="white">White (Default)</option>
+                <option value="blue" id="option-blue">Blue</option>
+                <option value="purple" id="option-purple">Purple</option>
+                <option value="green" id="option-green">Green</option>
+                <option value="grey" id="option-grey">Grey</option>
+                <option value="red" id="option-red">Red</option>
+                <option value="orange" id="option-orange">Orange</option>
+                <option value="yellow" id="option-yellow">Yellow</option>
+                <option value="dark" id="option-dark">Dark mode</option>
               </select>
               <p class="alertwords"></p>
           </form>

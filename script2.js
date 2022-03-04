@@ -6,6 +6,7 @@ const openEls = document.querySelectorAll("[data-open]"); // for popup boxes
 const closeEls = document.querySelectorAll("[data-close]"); // for popup boxes
 const submitBtn = document.querySelector('.submitbtn'); // Submit button (in popup boxes)
 const formBoxes = document.querySelectorAll('.form-box'); // Form box within popup box
+const formRadio1 = document.querySelector('#bookreadyes'); // Form radio buttons within popup box
 const isVisible = "is-visible"; // for popup boxes
 
 let libraryBooks = [];
@@ -38,9 +39,18 @@ function addBookToLibrary() {
   let bookTitle = document.querySelector('#book-title');
   let bookAuthor = document.querySelector('#book-author');
   let bookPages = document.querySelector('#book-pages');
-  let bookRead = document.querySelector('#book-read');
+  let bookReadYes = document.querySelector('#bookreadyes')
+  let bookReadNo = document.querySelector('#bookreadno');
+  let bookRead;
   let alertWords = document.querySelector('.alertwords'); // Alert if form elements are empty
-  let newBook = new Book(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.value);
+
+  if(bookReadYes.checked) {
+      bookRead = 'Read';
+  } else if (bookReadNo.checked) {
+      bookRead = 'Not read';
+  }
+
+  let newBook = new Book(bookTitle.value, bookAuthor.value, bookPages.value, bookRead);
 
 
   // If any form elements are empty, throw error and don't submit book.
@@ -52,6 +62,7 @@ function addBookToLibrary() {
       formBoxes.forEach(formBox => {
           formBox.value = "";
       });
+      formRadio1.checked = true;
       // Push new book object into libraryBooks array
       libraryBooks.push(newBook);
       
@@ -61,6 +72,11 @@ function addBookToLibrary() {
       const newCardAuthor = document.createElement('p');
       const newCardPages = document.createElement('p');
       const newCardRead = document.createElement('span');
+
+      newCardTitle.setAttribute('class', 'title-style');
+      newCardAuthor.setAttribute('class', 'author-style');
+      newCardPages.setAttribute('class', 'pages-style');
+      newCardRead.setAttribute('class', 'read-style');
       
       newCard.classList.add('isVisible', 'cardbox');
       showBooks.appendChild(newCard);
@@ -68,9 +84,9 @@ function addBookToLibrary() {
       for(let i = 0; i < libraryBooks.length; i++) {
           newCardTitle.innerHTML = `${libraryBooks[i].title}`;
           newCardTitle.innerHTML += "<button type='button' class='close' onclick='$(this).parent().parent().remove();'>x</button>";
-          newCardAuthor.innerHTML = `${libraryBooks[i].author}`;
-          newCardPages.innerHTML = `${libraryBooks[i].pages}`;
-          newCardRead.innerHTML = `${libraryBooks[i].read}`;
+          newCardAuthor.innerHTML = `by ${libraryBooks[i].author}`;
+          newCardPages.innerHTML = `<strong>Pages</strong>: ${libraryBooks[i].pages}`;
+          newCardRead.innerHTML = `<strong>Status</strong>: ${libraryBooks[i].read}`;
       }
       
       newCard.appendChild(newCardTitle);

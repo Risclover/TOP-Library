@@ -17,6 +17,19 @@ body {
     max-height: 100%;
 }
 
+input {
+  padding: 5px;
+}
+
+label {
+  margin-bottom: 5px;
+  font-size: .9rem;
+}
+
+.radio-option1 {
+  margin-right: 5px;
+}
+
 h4 {
     display: flex;
     justify-content: space-between;
@@ -26,7 +39,7 @@ h4 {
 
 .close {
     background: none;
-    font-size: 2rem;
+    font-size: 1.5rem;
     border: 0;
     margin-left: 10px;
     transition: 0.5s ease;
@@ -93,6 +106,58 @@ p {
 .show-books {
     display: flex;
     flex-wrap: wrap;
+}
+
+.title-style {
+  margin-bottom: -5px;
+}
+
+.author-style {
+  font-size: .9rem;
+  margin-bottom: 10px;
+}
+
+.pages-style, .read-style {
+  font-size: .9rem;
+}
+
+option {
+  font-family: 'Poppins', sans-serif;
+  font-size: .8rem;
+}
+
+#option-red {
+  background-color: rgb(241, 191, 191);
+  color: black;
+}
+
+#option-orange {
+  background-color: #ffcb9a;
+}
+
+#option-yellow {
+  background-color: #fffda1;
+}
+
+#option-green {
+  background-color: #9cd6af;
+}
+
+#option-blue {
+  background-color: #a1d3f0;
+}
+
+#option-purple {
+  background-color: #e6c1ff;
+}
+
+#option-grey {
+  background-color: #cfcfcf;
+}
+
+#option-dark {
+  background-color: #282f52;
+  color: white;
 }
 
 /* RESET RULES 
