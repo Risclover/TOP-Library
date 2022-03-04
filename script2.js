@@ -10,7 +10,15 @@ const formRadio1 = document.querySelector('#bookreadyes'); // Form radio buttons
 const isVisible = "is-visible"; // for popup boxes
 const colorDropdown = document.querySelector('select'); // Color-picking dropdown in popup boxes
 
+// localstorage buttons (save and delete)
+
+const saveStorage = document.getElementById('save-storage');
+const deleteStorage = document.getElementById('delete-storage');
+
 let libraryBooks = [];
+
+saveStorage.addEventListener('click', updateLocalStorage);
+deleteStorage.addEventListener('click', deleteLocalStorage);
 
 // If the 'books' key is empty, simply set libraryBooks to empty array.
 if (localStorage.getItem('books') === null) {
@@ -85,7 +93,8 @@ function addBookToLibrary() {
       
       for(let i = 0; i < libraryBooks.length; i++) {
           newCardTitle.innerHTML = `${libraryBooks[i].title}`;
-          newCardTitle.innerHTML += "<button type='button' class='close' onclick='$(this).parent().parent().remove();'>x</button>";
+          let closeBtn = "<button type='button' class='close-default' onclick='$(this).parent().parent().remove();'>x</button>";
+          newCardTitle.innerHTML += closeBtn;
           newCardAuthor.innerHTML = `by ${libraryBooks[i].author}`;
           newCardPages.innerHTML = `<strong>Pages</strong>: ${libraryBooks[i].pages}`;
           newCardRead.innerHTML = `<strong>Status</strong>: ${libraryBooks[i].read}`;
@@ -96,18 +105,9 @@ function addBookToLibrary() {
       newCard.appendChild(newCardPages);
       newCard.appendChild(newCardRead);
 
-    // Reset the color-picker dropdown back to default
-    for (var i = 0, l = colorDropdown.length; i < l; i++) {
-        if(colorDropdown[i].value === 'dark') {
-            document.querySelector('.close').classList.add('cardback-dark');
-        } else {
-            document.querySelector('.close').classList.remove('cardback-dark');
-        }
-        colorDropdown[i].selected = colorDropdown[i].defaultSelected;
-    }
+   
 
    }
-   updateLocalStorage();
 }
 
 
@@ -148,10 +148,6 @@ cardClose.forEach(card => {
     });
 })
 
-function updateLocalStorage() {
-    localStorage.setItem('books', JSON.stringify(libraryBooks));
-}
-
 function colorPicker() {
     switch(colorDropdown.value) {
         case 'red':
@@ -182,4 +178,12 @@ function colorPicker() {
             return 'cardback-white';
             break;
     }
+}
+
+function updateLocalStorage() {
+    localStorage.setItem('books', JSON.stringify(libraryBooks));
+}
+
+function deleteLocalStorage() {
+    window.localStorage.clear();
 }
