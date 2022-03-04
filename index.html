@@ -8,7 +8,6 @@
 
     <script src="https://kit.fontawesome.com/2b4114baf6.js" crossorigin="anonymous"></script>
 
-
     <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,89 +15,62 @@
 
     <!-- CSS Stylesheet -->
     <link href="styles.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
+
 <body>
-  <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-  <script>
-    function onSignIn(googleUser) {
-      // Useful data for your client-side scripts:
-      var profile = googleUser.getBasicProfile();
-      console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-      console.log('Full Name: ' + profile.getName());
-      console.log('Given Name: ' + profile.getGivenName());
-      console.log('Family Name: ' + profile.getFamilyName());
-      console.log("Image URL: " + profile.getImageUrl());
-      console.log("Email: " + profile.getEmail());
+  <h1>Library</h1>
+  <div class="btn-group">
+      <button type="button" class="open-modal" data-open="modal1">
+        New Book
+      </button>
+  </div>
 
-      // The ID token you need to pass to your backend:
-      var id_token = googleUser.getAuthResponse().id_token;
-      console.log("ID Token: " + id_token);
-    }
-  </script>
-    <h1>Library</h1>
-    <div class="btn-group">
-        <button type="button" class="open-modal" data-open="modal1">
-          New Book
+  <!-- Library books container -->
+  <div class="show-books">
+      
+  </div>
+
+  <!-- Modal code (popup box for new book form) -->
+  <div class="modal" id="modal1" data-animation="slideInOutLeft">
+    <div class="modal-dialog">
+      <header class="modal-header">
+        Book Details
+        <button class="close-modal" aria-label="close modal" data-close>
+          ✕  
         </button>
-      </div>
-    <div class="show-books">
-        
+      </header>
+      <section class="modal-content">
+          <form class="bookcard">
+              <label>Title of the book:</label>
+              <input type="text" class="form-box" id="book-title">
+              <label>Author of the book:</label>
+              <input type="text" class="form-box" id="book-author">
+              <label>How many pages?:</label>
+              <input type="number" class="form-box" id="book-pages">
+              <label>Have you read this?:</label>
+              <select id="book-read">
+                  <option name="select" disabled selected>Select one</option>
+                  <option name="yes">Yes</option>
+                  <option name="no">No</option>
+              </select>
+              <p class="alertwords"></p>
+          </form>
+      </section>
+      <footer class="modal-footer">
+        <button class="submitbtn">Submit</button>
+      </footer>
     </div>
-
-<div class="modal" id="modal1" data-animation="slideInOutLeft">
-  <div class="modal-dialog">
-    <header class="modal-header">
-      Book Details
-      <button class="close-modal" aria-label="close modal" data-close>
-        ✕  
-      </button>
-    </header>
-    <section class="modal-content">
-        <form class="bookcard">
-            <label>Title of the book:</label>
-            <input type="text" class="form-box" id="book-title">
-            <label>Author of the book:</label>
-            <input type="text" class="form-box" id="book-author">
-            <label>How many pages?:</label>
-            <input type="number" class="form-box" id="book-pages">
-            <label>Have you read this?:</label>
-            <select id="book-read">
-                <option name="select" disabled selected>Select one</option>
-                <option name="yes">Yes</option>
-                <option name="no">No</option>
-            </select>
-            <p class="alertwords"></p>
-        </form>
-    </section>
-    <footer class="modal-footer">
-      <button class="submitbtn">Submit</button>
-    </footer>
   </div>
-</div>
 
-<div class="modal" id="modal2" data-animation="mixInAnimations">
-  <div class="modal-dialog">
-    <header class="modal-header">
-      The header of the second modal
-      <button class="close-modal" aria-label="close modal" data-close>
-        ✕  
-      </button>
-    </header>
-    <section class="modal-content">
-      <p><strong>Press ✕, ESC, or click outside of the modal to close it</strong></p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo repellendus reprehenderit accusamus totam ratione! Nesciunt, nemo dolorum recusandae ad ex nam similique dolorem ab perspiciatis qui. Facere, dignissimos. Nemo, ea.</p>
-      <p>Nullam vitae enim vel diam elementum tincidunt a eget metus. Curabitur finibus vestibulum rutrum. Vestibulum semper tellus vitae tortor condimentum porta. Sed id ex arcu. Vestibulum eleifend tortor non purus porta dapibus</p>
-    </section>
-    <footer class="modal-footer">
-      The footer of the second modal
-    </footer>
-  </div>
-</div>
+  <footer class="page-footer">
+    <small>Made with <span>❤</span> by <a href="http://georgemartsoukos.com/" target="_blank">Sara Dunlop</a>
+    </small>
+  </footer>
 
-<footer class="page-footer">
-  <small>Made with <span>❤</span> by <a href="http://georgemartsoukos.com/" target="_blank">Sara Dunlop</a>
-  </small>
-</footer>
-    <script src="script.js"></script>
+  <!-- JS script -->
+  <script src="script2.js"></script>
 </body>
 </html>

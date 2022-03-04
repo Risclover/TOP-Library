@@ -1,28 +1,32 @@
-let libraryBooks = [];
+let libraryBooks = []; // Array of book objects
 
-const newBookBtn = document.querySelector('.newbook'); 
-const showBooks = document.querySelector('.show-books');
-const bookForm = document.querySelector('.book-form');
-const cardClose = document.querySelectorAll('.cardclose');
+
+// Linking DOM elements
+const newBookBtn = document.querySelector('.newbook'); // New Book button
+const showBooks = document.querySelector('.show-books'); // div container
+const cardClose = document.querySelectorAll('.cardclose'); // button to close card
 const openEls = document.querySelectorAll("[data-open]"); // for popup boxes
 const closeEls = document.querySelectorAll("[data-close]"); // for popup boxes
-const submitBtn = document.querySelector('.submitbtn')
-const formBoxes = document.querySelectorAll('.form-box');
+const submitBtn = document.querySelector('.submitbtn'); // Submit button (in popup boxes)
+const formBoxes = document.querySelectorAll('.form-box'); // Form box within popup box
 const isVisible = "is-visible"; // for popup boxes
 
+
+// If the 'books' key is empty, simply set libraryBooks to empty array.
 if (localStorage.getItem('books') === null) {
   libraryBooks = [];
+
+// Otherwise, set library books array to get items from the 'books' key
 } else {
   const booksFromStorage = JSON.parse(localStorage.getItem('books'));
   libraryBooks = booksFromStorage;
 }
 
-
+// Add 'click' event to Submit button. Run addBookToLibrary function.
 submitBtn.addEventListener('click', addBookToLibrary);
 
 
 // Book component
-
 function Book(title, author, pages, read) {
 	this.title = title
 	this.author = author
@@ -32,8 +36,6 @@ function Book(title, author, pages, read) {
 		return `${this.title} by ${this.author}, ${this.pages} pages, ${read}`;
 	}
 }
-
-
 
 // 
 function reAddBook(book) {
@@ -54,14 +56,15 @@ function addBookToLibrary(arr) {
     let bookTitle = document.querySelector('#book-title');
     let bookAuthor = document.querySelector('#book-author');
     let bookPages = document.querySelector('#book-pages');
-    let alertWords = document.querySelector('.alertwords');
-    let bookRead = document.querySelector("#book-read");
+    let alertWords = document.querySelector('.alertwords'); // Alert if form elements are empty
+    let bookRead = document.querySelector("#book-read"); 
     
 
     let modalBox = document.querySelector('.modal');
 
     const newBook = new Book(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.value);
 
+    // If elements are empty, throw alert
     if(bookTitle.value.length === 0 || bookAuthor.value.length === 0 || bookPages.value.length === 0) {
         alertWords.textContent = "Please fill in all fields.";
     } else {
@@ -71,8 +74,10 @@ function addBookToLibrary(arr) {
         formBox.value = "";
     });
 
+    // Push new book to libraryBooks array
     libraryBooks.push(newBook);
 
+    // Create card on page
     const newCard = document.createElement('div');
     let newCardTitle = document.createElement('h4');
     let newCardAuthor = document.createElement('p');
@@ -82,12 +87,11 @@ function addBookToLibrary(arr) {
     showBooks.appendChild(newCard);
     for(let i = 0; i < libraryBooks.length; i++) {
         newCardTitle.innerHTML = `${libraryBooks[i].title}`;
-        newCardTitle.innerHTML += "<button type='button' class='close' onclick='$(this).parent().parent().remove();'>×</button>"
+        newCardTitle.innerHTML += "<button type='button' class='close' onclick='$(this).parent().parent().remove();'>×</button>";
         newCardAuthor.innerHTML = `${libraryBooks[i].author}`;
         newCardPages.innerHTML = `${libraryBooks[i].pages}`;
         newCardRead.innerHTML = `${libraryBooks[i].read}`;
     }
-    
     newCard.appendChild(newCardTitle);
     newCard.appendChild(newCardAuthor);
     newCard.appendChild(newCardPages);
@@ -95,6 +99,7 @@ function addBookToLibrary(arr) {
     newCard.appendChild(newCardRead);
 }
 
+    // Run updateLocalStorage to update the local storage every time a new book is added
     updateLocalStorage();
 }
 
@@ -140,4 +145,9 @@ cardClose.forEach(card => {
 
 function updateLocalStorage() {
   localStorage.setItem('books', JSON.stringify(libraryBooks));
+}
+
+function loadLocalStorage() {
+  var storedArray = localStorage.getItem("books");
+  ourArray = JSON.parse(storedArray);
 }
