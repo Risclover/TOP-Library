@@ -10,6 +10,16 @@ const isVisible = "is-visible"; // for popup boxes
 
 let libraryBooks = [];
 
+// If the 'books' key is empty, simply set libraryBooks to empty array.
+if (localStorage.getItem('books') === null) {
+    libraryBooks = [];
+  
+// Otherwise, set library books array to get items from the 'books' key
+} else {
+    const booksFromStorage = JSON.parse(localStorage.getItem('books'));
+    libraryBooks = booksFromStorage;
+}
+
 submitBtn.addEventListener('click', addBookToLibrary);
 
 function Book(title, author, pages, read) {
@@ -67,9 +77,8 @@ function addBookToLibrary() {
       newCard.appendChild(newCardAuthor);
       newCard.appendChild(newCardPages);
       newCard.appendChild(newCardRead);
-
-      updateLocalStorage();
    }
+   updateLocalStorage();
 }
 
 
