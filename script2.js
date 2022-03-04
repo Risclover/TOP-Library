@@ -187,3 +187,53 @@ function updateLocalStorage() {
 function deleteLocalStorage() {
     window.localStorage.clear();
 }
+
+const data = JSON.parse(localStorage.getItem('books'));
+
+function loadLocalStorage(array, book) {
+    let bookTitle;
+    let bookAuthor;
+    let bookPages;
+    let bookRead;
+    for(let i = 0; i < array.length; i++) {
+        bookTitle = book.title;
+        bookAuthor = book.author;
+        bookPages = book.pages;
+        bookRead = book.read;
+    }
+
+     // Create book card on page
+     const newCard = document.createElement('div');
+     const newCardTitle = document.createElement('h4');
+     const newCardAuthor = document.createElement('p');
+     const newCardPages = document.createElement('p');
+     const newCardRead = document.createElement('span');
+
+     newCardTitle.setAttribute('class', 'title-style');
+     newCardAuthor.setAttribute('class', 'author-style');
+     newCardPages.setAttribute('class', 'pages-style');
+     newCardRead.setAttribute('class', 'read-style');
+     
+     newCard.classList.add('isVisible', 'cardbox', colorPicker());
+     showBooks.appendChild(newCard);
+     
+     for(let i = 0; i < array.length; i++) {
+         newCardTitle.innerHTML = `${bookTitle}`;
+         let closeBtn = "<button type='button' class='close-default' onclick='$(this).parent().parent().remove();'>x</button>";
+         newCardTitle.innerHTML += closeBtn;
+         newCardAuthor.innerHTML = `by ${bookAuthor}`;
+         newCardPages.innerHTML = `<strong>Pages</strong>: ${bookPages}`;
+         newCardRead.innerHTML = `<strong>Status</strong>: ${bookRead}`;
+     }
+     
+     newCard.appendChild(newCardTitle);
+     newCard.appendChild(newCardAuthor);
+     newCard.appendChild(newCardPages);
+     newCard.appendChild(newCardRead);
+}
+
+
+for(let i = 0; i < data.length; i++) {
+    loadLocalStorage(data, data[i]);
+    
+}
