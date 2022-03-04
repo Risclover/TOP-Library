@@ -8,6 +8,7 @@ const submitBtn = document.querySelector('.submitbtn'); // Submit button (in pop
 const formBoxes = document.querySelectorAll('.form-box'); // Form box within popup box
 const formRadio1 = document.querySelector('#bookreadyes'); // Form radio buttons within popup box
 const isVisible = "is-visible"; // for popup boxes
+const colorDropdown = document.querySelector('select'); // Color-picking dropdown in popup boxes
 
 let libraryBooks = [];
 
@@ -63,6 +64,7 @@ function addBookToLibrary() {
           formBox.value = "";
       });
       formRadio1.checked = true;
+
       // Push new book object into libraryBooks array
       libraryBooks.push(newBook);
       
@@ -93,9 +95,14 @@ function addBookToLibrary() {
       newCard.appendChild(newCardAuthor);
       newCard.appendChild(newCardPages);
       newCard.appendChild(newCardRead);
+      
+    // Reset the color-picker dropdown back to default
+    for (var i = 0, l = colorDropdown.length; i < l; i++) {
+        colorDropdown[i].selected = colorDropdown[i].defaultSelected;
+    }
+
    }
    updateLocalStorage();
-   colorPicker(newCard);
 }
 
 
@@ -140,9 +147,7 @@ function updateLocalStorage() {
     localStorage.setItem('books', JSON.stringify(libraryBooks));
 }
 
-function colorPicker(card) {
-    const colorDropdown = document.querySelector('select');
-
+function colorPicker() {
     switch(colorDropdown.value) {
         case 'red':
             return 'cardback-red';
