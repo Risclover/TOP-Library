@@ -9,7 +9,8 @@ const formBoxes = document.querySelectorAll('.form-box'); // Form box within pop
 const formRadio1 = document.querySelector('#bookreadyes'); // Form radio buttons within popup box
 const isVisible = "is-visible"; // for popup boxes
 const colorDropdown = document.querySelector('select'); // Color-picking dropdown in popup boxes
-let libraryBooks = [];
+let libraryBooks = [], automaticallyUpdate = true; //change automaticallyUpdate to false to prevent automatic saving(on changes)
+
 
 // localstorage buttons (save and delete)
 const saveStorage = document.getElementById('save-storage');
@@ -33,42 +34,50 @@ if (localStorage.getItem('books') === null) {
 
 
 // The Book constructor
-function Book(title, author, pages, read) {
-  this.title = title
-  this.author = author
-  this.pages = pages
-  this.read = read
+function Book({title, author, pages, read, color}) {
+  this.title = String(title)
+  this.author = String(author)
+  this.pages = Number(pages)
+  this.read = read?"Read":"Not Read"
+  this.color = String(color)
   this.info = function() {
-    return `${this.title} by ${this.author}, ${this.pages} pages, ${read}`;
+    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read} with color ${this.color}`;
   }
+}
+
+//returns your close button with a listener that actually removes the book
+//"<button type='button' class='close-default' onclick='$(this).parent().parent().remove();'>x</button>";
+function closeBar(book){
+  var btn=document.createElement('button')
+  btn.className='close-default'
+  btn.innerHTML='x' //wow almost forgot this
+  btn.addEventListener('click',()=>{
+    $(btn).parent().parent().remove()
+    libraryBooks.splice(libraryBooks.indexOf(book),1)
+    if(automaticallyUpdate){updateLocalStorage()} //automatic saving
+  })
+  return btn //the button is returned to be placed in its arrangement
 }
 
 
 // Add book to library function.
 function addBookToLibrary() {
+  let color = colorDropdown.value;
   let bookTitle = document.querySelector('#book-title');
   let bookAuthor = document.querySelector('#book-author');
   let bookPages = document.querySelector('#book-pages');
-  let bookReadYes = document.querySelector('#bookreadyes')
-  let bookReadNo = document.querySelector('#bookreadno');
+  let bookRead = document.querySelector('#bookreadyes').checked; //true if checked, false if not checked
   let alertWords = document.querySelector('.alertwords'); // Alert if form elements are empty
-  let bookRead;
-
-
-  if(bookReadYes.checked) {
-      bookRead = 'Read';
-  } else if (bookReadNo.checked) {
-      bookRead = 'Not read';
-  }
-
+    
   // Creating a new book object via the Book constructor
-  let newBook = new Book(bookTitle.value, bookAuthor.value, bookPages.value, bookRead);
+  let newBook = new Book({title:bookTitle.value, author:bookAuthor.value, pages:bookPages.value, read:bookRead, color});
+
 
   // If any form elements are empty, throw error and don't submit book. If none of them are empty, proceed.
   if (bookTitle.value.length === 0 || bookAuthor.value.length === 0 || bookPages.value.length === 0) {
       alertWords.textContent = 'Please fill in all fields.';
   } else {
-      alertWords.textContent = ''; 
+      alertWords.textContent = '';
       document.querySelector('.modal.is-visible').classList.remove(isVisible); // Closes the modal
       formBoxes.forEach(formBox => {
           formBox.value = "";           // Sets the form values so they're blank the next time the New Book button is pressed
@@ -90,13 +99,13 @@ function addBookToLibrary() {
       newCardPages.setAttribute('class', 'pages-style');
       newCardRead.setAttribute('class', 'read-style');
       
-      newCard.classList.add('isVisible', 'cardbox', colorPicker());
+      newCard.classList.add('isVisible', 'cardbox', colorPicker(newBook.color));
       showBooks.appendChild(newCard);
       
       for(let i = 0; i < libraryBooks.length; i++) {
           newCardTitle.innerHTML = `${libraryBooks[i].title}`;
-          let closeBtn = "<button type='button' class='close-default' onclick='$(this).parent().parent().remove();'>x</button>";
-          newCardTitle.innerHTML += closeBtn;
+          let closeBtn = closeBar(newBook)
+          newCardTitle.appendChild(closeBtn);
           newCardAuthor.innerHTML = `by ${libraryBooks[i].author}`;
           newCardPages.innerHTML = `<strong>Pages</strong>: ${libraryBooks[i].pages}`;
           newCardRead.innerHTML = `<strong>Status</strong>: ${libraryBooks[i].read}`;
@@ -106,8 +115,8 @@ function addBookToLibrary() {
       newCard.appendChild(newCardAuthor);
       newCard.appendChild(newCardPages);
       newCard.appendChild(newCardRead);
-    
-   
+      
+      if(automaticallyUpdate){updateLocalStorage()} //automatic saving
 
    }
 }
@@ -152,36 +161,11 @@ cardClose.forEach(card => {
 
 
 // Switch function for setting the background color of the book's card
-function colorPicker() {
-    switch(colorDropdown.value) {
-        case 'red':
-            return 'cardback-red';
-            break;
-        case 'orange':
-            return 'cardback-orange';
-            break;
-        case 'yellow':
-            return 'cardback-yellow';
-            break;
-        case 'green':
-            return 'cardback-green';
-            break;
-        case 'blue':
-            return 'cardback-blue';
-            break;
-        case 'purple':
-            return 'cardback-purple';
-            break;
-        case 'dark':
-            return 'cardback-dark';
-            break;
-        case 'grey':
-            return 'cardback-grey';
-            break;
-        default:
-            return 'cardback-white';
-            break;
-    }
+let colors = {red:1, orange:1, yellow:1, green:1, blue:1, purple:1, dark:1, grey:1}
+//the above variable saves a lot of lines in the colorPicker function
+function colorPicker(color) {
+    if(!colors[color]){return 'cardback-white'}
+    return 'cardback-'+color
 }
 
 
@@ -199,19 +183,19 @@ function deleteLocalStorage() {
 
 
 // Get localStorage data and set it to the variable "data"
-const data = JSON.parse(localStorage.getItem('books'));
+const data = JSON.parse(localStorage.getItem('books'))||[]
+// the "||" in case there was nothing stored yet and it prevents an error from reading map from null
+.map(book=>new Book( book )) //convert localStorage data to a list of "Book"s
 
 // Load the saved local storage objects into cards (almost identical to addBookToLibrary())
 function loadLocalStorage(array, book) {
-    let bookTitle;
-    let bookAuthor;
-    let bookPages;
-    let bookRead;
+    // 'var' can be used like this because they only stay in the scopes of their functions
+    // 'let' stays in the scopes of lots of code blocks(for,while,if,else,try,catch,etc)
     for(let i = 0; i < array.length; i++) {
-        bookTitle = book.title;
-        bookAuthor = book.author;
-        bookPages = book.pages;
-        bookRead = book.read;
+        var bookTitle = book.title;
+        var bookAuthor = book.author;
+        var bookPages = book.pages;
+        var bookRead = book.read;
     }
 
      // Create book card on page
@@ -226,13 +210,13 @@ function loadLocalStorage(array, book) {
      newCardPages.setAttribute('class', 'pages-style');
      newCardRead.setAttribute('class', 'read-style');
      
-     newCard.classList.add('isVisible', 'cardbox', colorPicker());
+     newCard.classList.add('isVisible', 'cardbox', colorPicker(book.color));
      showBooks.appendChild(newCard);
      
      for(let i = 0; i < array.length; i++) {
          newCardTitle.innerHTML = `${bookTitle}`;
-         let closeBtn = "<button type='button' class='close-default' onclick='$(this).parent().parent().remove();'>x</button>";
-         newCardTitle.innerHTML += closeBtn;
+         let closeBtn = closeBar(book)
+         newCardTitle.appendChild(closeBtn);
          newCardAuthor.innerHTML = `by ${bookAuthor}`;
          newCardPages.innerHTML = `<strong>Pages</strong>: ${bookPages}`;
          newCardRead.innerHTML = `<strong>Status</strong>: ${bookRead}`;
@@ -247,5 +231,4 @@ function loadLocalStorage(array, book) {
 // Required in order to load saved books onto page
 for(let i = 0; i < data.length; i++) {
     loadLocalStorage(data, data[i]);
-    
 }
