@@ -1,8 +1,9 @@
 # TOP-Library
  
-<img src="https://img.shields.io/github/last-commit/Risclover/TOP-Library?color=blue&style=flat-square"><img src="">
+<img src="https://img.shields.io/github/last-commit/Risclover/TOP-Library?color=blue&style=flat-square"><img />
 
-Badges to add in the future:
+
+Badges to add in the future: 
 * Release date
 * Last updated date
 * Maybe version number?
@@ -22,6 +23,8 @@ Badges to add in the future:
 
 ### Updates
 * **03/03/2022** - Added option to select (from a preselected list) a card's background color. Not only does this bring a little fun and variety to the page, but it also allows the users to then color according to categories, etc.
+  
+* **03/04/2022** - Successfully added localStorage capabilities, including buttons to save info to local storage as well as delete info from local storage. This was exciting because it was a breakthrough for me :D
 
 ## About Project 
 ([Back to Top](#top-library))

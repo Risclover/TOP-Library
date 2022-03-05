@@ -388,6 +388,7 @@ select {
       align-items: center;
       justify-content: center;
   }
+  
   .page-footer {
       position: fixed;
       bottom: 0;

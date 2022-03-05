@@ -9,29 +9,30 @@ const formBoxes = document.querySelectorAll('.form-box'); // Form box within pop
 const formRadio1 = document.querySelector('#bookreadyes'); // Form radio buttons within popup box
 const isVisible = "is-visible"; // for popup boxes
 const colorDropdown = document.querySelector('select'); // Color-picking dropdown in popup boxes
+let libraryBooks = [];
 
 // localstorage buttons (save and delete)
-
 const saveStorage = document.getElementById('save-storage');
 const deleteStorage = document.getElementById('delete-storage');
 
-let libraryBooks = [];
-
+// Button event listeners
 saveStorage.addEventListener('click', updateLocalStorage);
 deleteStorage.addEventListener('click', deleteLocalStorage);
+submitBtn.addEventListener('click', addBookToLibrary);
+
 
 // If the 'books' key is empty, simply set libraryBooks to empty array.
 if (localStorage.getItem('books') === null) {
     libraryBooks = [];
-  
+
 // Otherwise, set library books array to get items from the 'books' key
 } else {
     const booksFromStorage = JSON.parse(localStorage.getItem('books'));
     libraryBooks = booksFromStorage;
 }
 
-submitBtn.addEventListener('click', addBookToLibrary);
 
+// The Book constructor
 function Book(title, author, pages, read) {
   this.title = title
   this.author = author
@@ -50,8 +51,9 @@ function addBookToLibrary() {
   let bookPages = document.querySelector('#book-pages');
   let bookReadYes = document.querySelector('#bookreadyes')
   let bookReadNo = document.querySelector('#bookreadno');
-  let bookRead;
   let alertWords = document.querySelector('.alertwords'); // Alert if form elements are empty
+  let bookRead;
+
 
   if(bookReadYes.checked) {
       bookRead = 'Read';
@@ -59,24 +61,24 @@ function addBookToLibrary() {
       bookRead = 'Not read';
   }
 
+  // Creating a new book object via the Book constructor
   let newBook = new Book(bookTitle.value, bookAuthor.value, bookPages.value, bookRead);
 
-
-  // If any form elements are empty, throw error and don't submit book.
+  // If any form elements are empty, throw error and don't submit book. If none of them are empty, proceed.
   if (bookTitle.value.length === 0 || bookAuthor.value.length === 0 || bookPages.value.length === 0) {
       alertWords.textContent = 'Please fill in all fields.';
   } else {
-      alertWords.textContent = '';
-      document.querySelector('.modal.is-visible').classList.remove(isVisible);
+      alertWords.textContent = ''; 
+      document.querySelector('.modal.is-visible').classList.remove(isVisible); // Closes the modal
       formBoxes.forEach(formBox => {
-          formBox.value = "";
+          formBox.value = "";           // Sets the form values so they're blank the next time the New Book button is pressed
       });
-      formRadio1.checked = true;
+      formRadio1.checked = true; // Set the radio buttons so that the "Yes" button is automatically selected (otherwise, the user's last choice will be selected)
 
-      // Push new book object into libraryBooks array
+      // Push the new book object into libraryBooks array
       libraryBooks.push(newBook);
       
-      // Create book card on page
+      // The rest of the lines of code in this function create the actual book card on page
       const newCard = document.createElement('div');
       const newCardTitle = document.createElement('h4');
       const newCardAuthor = document.createElement('p');
@@ -104,7 +106,7 @@ function addBookToLibrary() {
       newCard.appendChild(newCardAuthor);
       newCard.appendChild(newCardPages);
       newCard.appendChild(newCardRead);
-
+    
    
 
    }
@@ -148,6 +150,8 @@ cardClose.forEach(card => {
     });
 })
 
+
+// Switch function for setting the background color of the book's card
 function colorPicker() {
     switch(colorDropdown.value) {
         case 'red':
@@ -180,16 +184,24 @@ function colorPicker() {
     }
 }
 
+
+// Update local storage
 function updateLocalStorage() {
     localStorage.setItem('books', JSON.stringify(libraryBooks));
 }
 
+
+// Delete local storage
 function deleteLocalStorage() {
     window.localStorage.clear();
+    showBooks.textContent = "";
 }
 
+
+// Get localStorage data and set it to the variable "data"
 const data = JSON.parse(localStorage.getItem('books'));
 
+// Load the saved local storage objects into cards (almost identical to addBookToLibrary())
 function loadLocalStorage(array, book) {
     let bookTitle;
     let bookAuthor;
@@ -232,7 +244,7 @@ function loadLocalStorage(array, book) {
      newCard.appendChild(newCardRead);
 }
 
-
+// Required in order to load saved books onto page
 for(let i = 0; i < data.length; i++) {
     loadLocalStorage(data, data[i]);
     
