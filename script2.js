@@ -22,17 +22,6 @@ deleteStorage.addEventListener('click', deleteLocalStorage);
 submitBtn.addEventListener('click', addBookToLibrary);
 
 
-// If the 'books' key is empty, simply set libraryBooks to empty array.
-if (localStorage.getItem('books') === null) {
-    libraryBooks = [];
-
-// Otherwise, set library books array to get items from the 'books' key
-} else {
-    const booksFromStorage = JSON.parse(localStorage.getItem('books'));
-    libraryBooks = booksFromStorage;
-}
-
-
 // The Book constructor
 function Book({title, author, pages, read, color}) {
   this.title = String(title)
@@ -48,11 +37,12 @@ function Book({title, author, pages, read, color}) {
 //returns your close button with a listener that actually removes the book
 //"<button type='button' class='close-default' onclick='$(this).parent().parent().remove();'>x</button>";
 function closeBar(book){
-  var btn=document.createElement('button')
+  let btn=document.createElement('button')
   btn.className='close-default'
   btn.innerHTML='x' //wow almost forgot this
   btn.addEventListener('click',()=>{
     $(btn).parent().parent().remove()
+    console.log(book,libraryBooks,libraryBooks.indexOf(book))
     libraryBooks.splice(libraryBooks.indexOf(book),1)
     if(automaticallyUpdate){updateLocalStorage()} //automatic saving
   })
@@ -98,18 +88,18 @@ function addBookToLibrary() {
       newCardAuthor.setAttribute('class', 'author-style');
       newCardPages.setAttribute('class', 'pages-style');
       newCardRead.setAttribute('class', 'read-style');
-      
+
       newCard.classList.add('isVisible', 'cardbox', colorPicker(newBook.color));
       showBooks.appendChild(newCard);
+
+      const {title,author,pages,read}=newBook
+      newCardTitle.innerHTML = `${title}`;
+      let closeBtn = closeBar(newBook)
+      newCardTitle.appendChild(closeBtn);
+      newCardAuthor.innerHTML = `by ${author}`;
+      newCardPages.innerHTML = `<strong>Pages</strong>: ${pages}`;
+      newCardRead.innerHTML = `<strong>Status</strong>: ${read}`;
       
-      for(let i = 0; i < libraryBooks.length; i++) {
-          newCardTitle.innerHTML = `${libraryBooks[i].title}`;
-          let closeBtn = closeBar(newBook)
-          newCardTitle.appendChild(closeBtn);
-          newCardAuthor.innerHTML = `by ${libraryBooks[i].author}`;
-          newCardPages.innerHTML = `<strong>Pages</strong>: ${libraryBooks[i].pages}`;
-          newCardRead.innerHTML = `<strong>Status</strong>: ${libraryBooks[i].read}`;
-      }
       
       newCard.appendChild(newCardTitle);
       newCard.appendChild(newCardAuthor);
@@ -188,39 +178,32 @@ const data = JSON.parse(localStorage.getItem('books'))||[]
 .map(book=>new Book( book )) //convert localStorage data to a list of "Book"s
 
 // Load the saved local storage objects into cards (almost identical to addBookToLibrary())
-function loadLocalStorage(array, book) {
-    // 'var' can be used like this because they only stay in the scopes of their functions
-    // 'let' stays in the scopes of lots of code blocks(for,while,if,else,try,catch,etc)
-    for(let i = 0; i < array.length; i++) {
-        var bookTitle = book.title;
-        var bookAuthor = book.author;
-        var bookPages = book.pages;
-        var bookRead = book.read;
-    }
+function loadLocalStorage({title,author,pages,read,color}) {
+    // EDIT: the for loops in this function are seemingly useless    
+    var newBook=arguments[0]
+    libraryBooks.push(newBook)
+    // Create book card on page
+    const newCard = document.createElement('div');
+    const newCardTitle = document.createElement('h4');
+    const newCardAuthor = document.createElement('p');
+    const newCardPages = document.createElement('p');
+    const newCardRead = document.createElement('span');
 
-     // Create book card on page
-     const newCard = document.createElement('div');
-     const newCardTitle = document.createElement('h4');
-     const newCardAuthor = document.createElement('p');
-     const newCardPages = document.createElement('p');
-     const newCardRead = document.createElement('span');
-
-     newCardTitle.setAttribute('class', 'title-style');
-     newCardAuthor.setAttribute('class', 'author-style');
-     newCardPages.setAttribute('class', 'pages-style');
-     newCardRead.setAttribute('class', 'read-style');
+    newCardTitle.setAttribute('class', 'title-style');
+    newCardAuthor.setAttribute('class', 'author-style');
+    newCardPages.setAttribute('class', 'pages-style');
+    newCardRead.setAttribute('class', 'read-style');
+    
+    newCard.classList.add('isVisible', 'cardbox', colorPicker(color));
+    showBooks.appendChild(newCard);
      
-     newCard.classList.add('isVisible', 'cardbox', colorPicker(book.color));
-     showBooks.appendChild(newCard);
-     
-     for(let i = 0; i < array.length; i++) {
-         newCardTitle.innerHTML = `${bookTitle}`;
-         let closeBtn = closeBar(book)
-         newCardTitle.appendChild(closeBtn);
-         newCardAuthor.innerHTML = `by ${bookAuthor}`;
-         newCardPages.innerHTML = `<strong>Pages</strong>: ${bookPages}`;
-         newCardRead.innerHTML = `<strong>Status</strong>: ${bookRead}`;
-     }
+    
+    newCardTitle.innerHTML = `${title}`;
+    const closeBtn = closeBar(newBook);
+    newCardTitle.appendChild(closeBtn);
+    newCardAuthor.innerHTML = `by ${author}`;
+    newCardPages.innerHTML = `<strong>Pages</strong>: ${pages}`;
+    newCardRead.innerHTML = `<strong>Status</strong>: ${read}`;
      
      newCard.appendChild(newCardTitle);
      newCard.appendChild(newCardAuthor);
@@ -230,5 +213,5 @@ function loadLocalStorage(array, book) {
 
 // Required in order to load saved books onto page
 for(let i = 0; i < data.length; i++) {
-    loadLocalStorage(data, data[i]);
+    loadLocalStorage(data[i]);
 }
