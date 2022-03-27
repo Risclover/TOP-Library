@@ -13,6 +13,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
 
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
     <!-- CSS Stylesheet -->
     <link href="styles.css" rel="stylesheet">
 
@@ -21,26 +25,28 @@
 </head>
 
 <body>
-  <h1>Library</h1>
-  <div class="btn-group">
-      <button type="button" class="open-modal" data-open="modal1">
-        New Book
-      </button>
+  <h1>My Digital Library 😀</h1>
+  <div class="info-box">
+    <h2 class="instructions">Instructions <span class="material-icons">keyboard_arrow_down</span></h2>
+    <div class="slider">
+      <p class="info">This is Library App, a nifty little tool for keeping track of your books in their own digital space.</p>
+      <p class="info">To change a book's "Read" status, simply click on the status chosen ("Yes" or "No"); this action will toggle between the two options.</p>
+    </div>
   </div>
   <div class="btn-group">
-    <button class="open-modal" id="save-storage">
-      Save local storage
+    <button type="button" class="open-modal" data-open="modal1">
+      New Book
     </button>
     <button class="open-modal" id="delete-storage">
-      Delete local storage
+      Clear library
     </button>
   </div>
-
+  <main>
   <!-- Library books container -->
-  <div class="show-books">
-      
-  </div>
-
+    <div class="show-books">
+        
+    </div>
+  </main>
   <!-- Modal code (popup box for new book form) -->
   <div class="modal" id="modal1" data-animation="slideInOutLeft">
     <div class="modal-dialog">
@@ -86,11 +92,13 @@
   </div>
 
   <footer class="page-footer">
-    <small>Made with <span>❤</span> by <a href="http://georgemartsoukos.com/" target="_blank">Sara Dunlop</a>
+    <small>Made with <span>❤</span> by <a href="http://risclover.github.io/" target="_blank">Sara Dunlop</a>
     </small>
   </footer>
 
   <!-- JS script -->
-  <script src="script2.js"></script>
+  <script src="script3.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 </body>
 </html>

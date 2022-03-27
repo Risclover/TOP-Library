@@ -8,13 +8,21 @@ body, html {
     align-items: center;
     flex-direction: column;
     background-color: #cedee9;
-    height: 100vh;
+    min-height: 100vh;
     padding: 10px;
     font-family: 'Rubik', sans-serif;
   }
 
 body {
-    max-height: 100%;
+    height: 100%;
+}
+
+span {
+  cursor: pointer;
+}
+
+main {
+  margin-bottom: 15px;
 }
 
 input {
@@ -32,8 +40,26 @@ input[type='text'] {
   font-family: 'Poppins', sans-serif;
 }
 
+.cardhead {
+  width: 100%;
+  padding: 10px;
+  margin: 0 -10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .radio-option1 {
   margin-right: 5px;
+}
+
+h2 {
+  display: flex;
+  align-items: center;
+  width: 180px;
+  cursor: pointer;
+  margin: 0 auto 15px auto;
+  justify-content: space-between;
 }
 
 h4 {
@@ -41,6 +67,57 @@ h4 {
     justify-content: space-between;
     align-items: center;
     font-size: 1.2rem;
+    width: 100%;
+    padding: 0 2px;
+}
+
+.material-icons {
+  font-size: 30px;
+}
+
+
+.info-box {
+  text-align: center;
+  border: 1px solid black;
+  margin: 20px;
+  max-width: 400px;
+  transition: 0.5s ease;
+  padding: 20px 20px 0 20px;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+}
+
+.slider {
+	overflow-y: auto;
+	/* complete liquid height based on the parent's height!! */
+    height:100%;
+
+    /* only transition on transform properties which are hardware accelerated = way better performances */
+	-webkit-transition:-webkit-transform .3s ease;
+       -moz-transition:   -moz-transform .3s ease;
+        -ms-transition:    -ms-transform .3s ease;
+            transition:        transform .3s ease;
+}
+
+.slider.opened { 
+    /* visible */
+    -webkit-transform: translate(0, 0%);
+       -moz-transform: translate(0, 0%);
+        -ms-transform: translate(0, 0%);
+            transform: translate(0, 0%);
+}
+.slider.closed { 
+    /* completely offscreen */
+    -webkit-transform: translate(0, -100%);
+       -moz-transform: translate(0, -100%);
+        -ms-transform: translate(0, -100%);
+            transform: translate(0, -100%);
+}
+
+.info-box .info {
+  margin-bottom: 15px;
 }
 
 .close {
@@ -48,8 +125,8 @@ h4 {
     font-size: 1.5rem;
     border: 0;
     margin-left: 10px;
-    transition: 0.5s ease;
-}
+    transition: all 1s;
+  }
 
 .close:hover {
     cursor: pointer;
@@ -90,6 +167,17 @@ p {
     margin-top: 5px;
 }
 
+.btn-white {
+  color: white;
+}
+.close-default {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 20px;
+}
+
 .bookcard {
     width: 200px;
     display: flex;
@@ -97,8 +185,13 @@ p {
     flex-direction: column;
 }
 
+.cardback-dark > h4 > button {
+  color: white;
+}
+
 .cardbox {
     background-color: white;
+    border: 5px solid white;
     width: 250px;
     margin: 10px;
     padding: 12px 20px 20px 20px;
@@ -110,12 +203,13 @@ p {
 }
 
 .show-books {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
 }
 
 .title-style {
-  margin-bottom: -5px;
+  border-bottom: 1px solid rgb(0, 0, 0);
 }
 
 .author-style {
@@ -125,6 +219,7 @@ p {
 
 .pages-style, .read-style {
   font-size: .9rem;
+  line-height: 1.5;
 }
 
 option {
@@ -195,6 +290,8 @@ select {
   
   .btn-group {
     text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
   
   .open-modal {
@@ -387,11 +484,16 @@ select {
       display: flex;
       align-items: center;
       justify-content: center;
+      padding-bottom: 5px;
+      padding-top: 5px;
+      background-color: rgba(255, 255, 255, 0.89);
   }
   
   .page-footer {
       position: fixed;
       bottom: 0;
+      width: 100%;
+
   }
   
   .page-footer span {

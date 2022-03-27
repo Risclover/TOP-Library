@@ -33,11 +33,12 @@ if (localStorage.getItem('books') === null) {
 
 
 // The Book constructor
-function Book(title, author, pages, read) {
+function Book(title, author, pages, read, color) {
   this.title = title
   this.author = author
   this.pages = pages
   this.read = read
+  this.color = color
   this.info = function() {
     return `${this.title} by ${this.author}, ${this.pages} pages, ${read}`;
   }
@@ -247,5 +248,4 @@ function loadLocalStorage(array, book) {
 // Required in order to load saved books onto page
 for(let i = 0; i < data.length; i++) {
     loadLocalStorage(data, data[i]);
-    
 }

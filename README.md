@@ -1,6 +1,7 @@
-# TOP-Library
+# My Digital Library 😀
  
 <img src="https://img.shields.io/github/last-commit/Risclover/TOP-Library?color=blue&style=flat-square"><img />
+<img src="https://img.shields.io/github/last-commit/Risclover/TOP-Library"><img />
 
 
 Badges to add in the future: 
