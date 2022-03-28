@@ -1,16 +1,12 @@
 # My Digital Library 😀
-<img src="https://img.shields.io/github/release-date-pre/Risclover/TOP-Library?color=blueviolet" />
-<img src="https://img.shields.io/w3c-validation/html?targetUrl=https%3A%2F%2Fvalidator.nu%2F%23l73c35" />
-<img src="https://img.shields.io/github/repo-size/Risclover/TOP-Library?color=darkgreen" />
-<img src="https://img.shields.io/github/last-commit/Risclover/TOP-Library?color=blue&style=flat-square"><img />
-<img src="https://img.shields.io/github/commit-activity/m/Risclover/TOP-Library?color=teal&label=commits"><img />
+<img src="https://img.shields.io/github/release-date-pre/Risclover/TOP-Library?color=blueviolet" /> <img src="https://img.shields.io/w3c-validation/html?targetUrl=https%3A%2F%2Fvalidator.nu%2F%23l73c35" /> <img src="https://img.shields.io/github/repo-size/Risclover/TOP-Library?color=darkgreen" /> <img src="https://img.shields.io/github/last-commit/Risclover/TOP-Library?color=blue&style=flat-square" /> <img src="https://img.shields.io/github/commit-activity/m/Risclover/TOP-Library?color=teal&label=commits" />
 
 
 ## Introduction
 ([Back to Top](#my-digital-library-😀))
 ### Table of Contents
   - [Introduction](#introduction)
-    - [Table of Contents](#table-of-contents)
+    - [Table of Contents](#table-of-contentsssss)
     - [Updates](#updates)
   - [About Project](#about-project)
     - [Screenshots](#screenshots)
