@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library</title>
-
-    <script src="https://kit.fontawesome.com/2b4114baf6.js" crossorigin="anonymous"></script>
+    <title>My Digital Library</title>
 
     <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,6 +15,9 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 
+    <!-- Font Awesome icons -->
+    <script src="https://kit.fontawesome.com/2b4114baf6.js" crossorigin="anonymous"></script>
+
     <!-- CSS Stylesheet -->
     <link href="styles.css" rel="stylesheet">
 
@@ -25,76 +26,88 @@
 </head>
 
 <body>
+<!-- Page header -->
+  <!-- Title -->
   <h1>My Digital Library 😀</h1>
+  <!-- Instructions box -->
   <div class="info-box">
     <h2 class="instructions">Instructions <span class="material-icons">keyboard_arrow_down</span></h2>
-    <div class="slider">
+    <div class="slider"> <!-- Div required for "slider" effect -->
       <p class="info">This is Library App, a nifty little tool for keeping track of your books in their own digital space.</p>
       <p class="info">To change a book's "Read" status, simply click on the status chosen ("Yes" or "No"); this action will toggle between the two options.</p>
     </div>
   </div>
+  <!-- Div holding buttons -->
   <div class="btn-group">
+    <!-- "New Book" button -->
     <button type="button" class="open-modal" data-open="modal1">
       New Book
     </button>
+    <!-- "Clear Library" button -->
     <button class="open-modal" id="delete-storage">
       Clear library
     </button>
   </div>
-  <main>
-  <!-- Library books container -->
-    <div class="show-books">
-        
-    </div>
-  </main>
-  <!-- Modal code (popup box for new book form) -->
-  <div class="modal" id="modal1" data-animation="slideInOutLeft">
-    <div class="modal-dialog">
-      <header class="modal-header">
-        Book Details
-        <button class="close-modal" aria-label="close modal" data-close>
-          ✕  
-        </button>
-      </header>
-      <section class="modal-content">
-          <form class="bookcard">
-              <label>Title:</label>
-              <input type="text" class="form-box" id="book-title" placeholder="Fight Club">
-              <label>Author:</label>
-              <input type="text" class="form-box" id="book-author" placeholder="Chuck Palahniuk">
-              <label># of Pages:</label>
-              <input type="number" class="form-box" id="book-pages" placeholder="208" min="1" max="14000">
-              <label>Have you read this book?:</label>
-              <div class="radiobox">
-                <label class="radio-option1"><input type="radio" name="read" value="yes" id="bookreadyes" class='form-radio' checked> Yes</label>
-                <label class="radio-option2"><input type="radio" name="read" value="no" id="bookreadno" class='form-radio'> No</label>
-              </div>
-              <label>Select card color (optional):</label>
-              <select class="colorpicker">
-                <option value='default' selected disabled>Please select one</option>
-                <option value="white">White (Default)</option>
-                <option value="blue" id="option-blue">Blue</option>
-                <option value="purple" id="option-purple">Purple</option>
-                <option value="green" id="option-green">Green</option>
-                <option value="grey" id="option-grey">Grey</option>
-                <option value="red" id="option-red">Red</option>
-                <option value="orange" id="option-orange">Orange</option>
-                <option value="yellow" id="option-yellow">Yellow</option>
-                <option value="dark" id="option-dark">Dark mode</option>
-              </select>
-              <p class="alertwords"></p>
-          </form>
-      </section>
-      <footer class="modal-footer">
-        <button class="submitbtn">Submit</button>
-      </footer>
-    </div>
+
+<!-- Main content -->
+<main>
+
+<!-- Library books container (LEAVE EMPTY) -->
+  <div class="show-books">
+      
   </div>
 
-  <footer class="page-footer">
-    <small>Made with <span>❤</span> by <a href="http://risclover.github.io/" target="_blank">Sara Dunlop</a>
-    </small>
-  </footer>
+</main>
+
+<!-- Modal code (popup box for new book form) -->
+<div class="modal" id="modal1" data-animation="slideInOutLeft">
+  <div class="modal-dialog">
+    <header class="modal-header">
+      Book Details
+      <button class="close-modal" aria-label="close modal" data-close>
+        ✕  
+      </button>
+    </header>
+    <section class="modal-content">
+        <form class="bookcard">
+            <label>Title:</label>
+            <input type="text" class="form-box" id="book-title" placeholder="Fight Club">
+            <label>Author:</label>
+            <input type="text" class="form-box" id="book-author" placeholder="Chuck Palahniuk">
+            <label># of Pages:</label>
+            <input type="number" class="form-box" id="book-pages" placeholder="208" min="1" max="14000">
+            <label>Have you read this book?:</label>
+            <div class="radiobox">
+              <label class="radio-option1"><input type="radio" name="read" value="yes" id="bookreadyes" class='form-radio' checked> Yes</label>
+              <label class="radio-option2"><input type="radio" name="read" value="no" id="bookreadno" class='form-radio'> No</label>
+            </div>
+            <label>Select card color (optional):</label>
+            <select class="colorpicker">
+              <option value='default' selected disabled>Please select one</option>
+              <option value="white">White (Default)</option>
+              <option value="blue" id="option-blue">Blue</option>
+              <option value="purple" id="option-purple">Purple</option>
+              <option value="green" id="option-green">Green</option>
+              <option value="grey" id="option-grey">Grey</option>
+              <option value="red" id="option-red">Red</option>
+              <option value="orange" id="option-orange">Orange</option>
+              <option value="yellow" id="option-yellow">Yellow</option>
+              <option value="dark" id="option-dark">Dark mode</option>
+            </select>
+            <p class="alertwords"></p>
+        </form>
+    </section>
+    <footer class="modal-footer">
+      <button class="submitbtn">Submit</button>
+    </footer>
+  </div>
+</div>
+
+<!-- Page Footer -->
+<footer class="page-footer">
+  <small>Made with <span>❤</span> by <a href="http://risclover.github.io/" target="_blank">Sara Dunlop</a>
+  </small>
+</footer>
 
   <!-- JS script -->
   <script src="script3.js"></script>
