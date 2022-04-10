@@ -3,10 +3,11 @@
 
 
 ## Introduction
-([Back to Top](#my-digital-library-😀))
+([Back to Top](#my-digital-library))
+
 ### Table of Contents
   - [Introduction](#introduction)
-    - [Table of Contents](#table-of-contentsssss)
+    - [Table of Contents](#table-of-contents)
     - [Updates](#updates)
   - [About Project](#about-project)
     - [Screenshots](#screenshots)
@@ -32,7 +33,7 @@
         * Added "Instructions" box at the top, complete with "Hide/Show" capability.
 
 ## About Project 
-([Back to Top](#my-digital-library-😀))
+([Back to Top](#my-digital-library))
 
 This "library" is a project given by [The Odin Project](https:/www.theodinrpoject.org/)'s JavaScript course (found within both of the advanced paths after Foundations). It follows a lesson on [objects and object constructors](https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript/lessons/objects-and-object-constructors), and their instructions are as follows:
 
@@ -49,7 +50,7 @@ This "library" is a project given by [The Odin Project](https:/www.theodinrpojec
 <br />
 
 ### Original Project Instructions
-([Back to Top](#my-digital-library-😀))
+([Back to Top](#my-digital-library))
 
 The following are the instructions for the project, taken from the project's page on The Odin Project's website.
 
@@ -82,7 +83,7 @@ If you visit their page for that project, you can find plenty of finished exampl
 <br />
 
 ### Technologies Used
-([Back to Top](#my-digital-library-😀))
+([Back to Top](#my-digital-library))
 
 During the creation of this project, I used the following languages, frameworks, and tools:
 
@@ -95,7 +96,7 @@ During the creation of this project, I used the following languages, frameworks,
 <br>
 
 ## How to Use
-([Back to Top](#my-digital-library-😀))
+([Back to Top](#my-digital-library))
 
 1. Click on the "New Book" button to add a book to the library.
 
@@ -128,7 +129,7 @@ During the creation of this project, I used the following languages, frameworks,
 7. You can also click the X in the upper right-hand corner to delete the book from your collection.
 
 ## Links
-([Back to Top](#my-digital-library-😀))
+([Back to Top](#my-digital-library))
 1. [Live Demo](https://risclover.github.io/TOP-Library)
 2. [Code Repo](https://www.github.com/Risclover/TOP-Library) (You are here)
-3. [Blog Post -> "Project Breakdown: Library"](https://risclover.github.io/)
+3. [Visit my developer portfolio!](https://risclover.github.io/)

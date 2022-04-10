@@ -103,10 +103,7 @@ function addBookToLibrary(arr) {
     updateLocalStorage();
 }
 
-
-
 // Stuff for popup capability
-
 for (const el of openEls) {
   el.addEventListener("click", function() {
     const modalId = this.dataset.open;
